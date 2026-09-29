@@ -202,112 +202,168 @@ class Shipment
           */
         #endregion
         #region Q4 part 2
-
-        class StandardShipment : Shipment
-        {
-            public StandardShipment(
-                string trackingCode,
-                string description,
-                double weight,
-                double deliveryFee)
-                : base(trackingCode, description, weight, deliveryFee)
-            {
-            }
-
-            public override void PrintShipment()
-            {
-                Console.WriteLine("------------------------------------------");
-                Console.WriteLine("Standard Shipment");
-                Console.WriteLine();
-
-                Console.WriteLine("Tracking Code : " + TrackingCode);
-                Console.WriteLine("Description   : " + Description);
-                Console.WriteLine("Weight        : " + Weight + " KG");
-                Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
-                Console.WriteLine("Estimated Cost: " + EstimatedCost + " EGP");
-            }
-        }
-
-
-        class ExpressShipment : Shipment
-        {
-            public double ExtraFee;
-
-            public ExpressShipment(
-                string trackingCode,
-                string description,
-                double weight,
-                double deliveryFee,
-                double extraFee)
-                : base(trackingCode, description, weight, deliveryFee)
-            {
-                ExtraFee = extraFee;
-            }
-
-            public override double EstimatedCost
-            {
-                get
+        /*
+                class StandardShipment : Shipment
                 {
-                    return DeliveryFee + (Weight * 5) + ExtraFee;
+                    public StandardShipment(
+                        string trackingCode,
+                        string description,
+                        double weight,
+                        double deliveryFee)
+                        : base(trackingCode, description, weight, deliveryFee)
+                    {
+                    }
+
+                    public override void PrintShipment()
+                    {
+                        Console.WriteLine("------------------------------------------");
+                        Console.WriteLine("Standard Shipment");
+                        Console.WriteLine();
+
+                        Console.WriteLine("Tracking Code : " + TrackingCode);
+                        Console.WriteLine("Description   : " + Description);
+                        Console.WriteLine("Weight        : " + Weight + " KG");
+                        Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
+                        Console.WriteLine("Estimated Cost: " + EstimatedCost + " EGP");
+                    }
+                }
+
+
+                class ExpressShipment : Shipment
+                {
+                    public double ExtraFee;
+
+                    public ExpressShipment(
+                        string trackingCode,
+                        string description,
+                        double weight,
+                        double deliveryFee,
+                        double extraFee)
+                        : base(trackingCode, description, weight, deliveryFee)
+                    {
+                        ExtraFee = extraFee;
+                    }
+
+                    public override double EstimatedCost
+                    {
+                        get
+                        {
+                            return DeliveryFee + (Weight * 5) + ExtraFee;
+                        }
+                    }
+
+                    public override void PrintShipment()
+                    {
+                        Console.WriteLine("------------------------------------------");
+                        Console.WriteLine("Express Shipment");
+                        Console.WriteLine();
+
+                        Console.WriteLine("Tracking Code : " + TrackingCode);
+                        Console.WriteLine("Description   : " + Description);
+                        Console.WriteLine("Weight        : " + Weight + " KG");
+                        Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
+                        Console.WriteLine("Extra Fee     : " + ExtraFee + " EGP");
+                        Console.WriteLine("Estimated Cost: " + EstimatedCost + " EGP");
+                    }
+                }
+
+
+                class InternationalShipment : Shipment
+                {
+                    public string DestinationCountry;
+                    public double CustomsFee;
+
+                    public InternationalShipment(
+                        string trackingCode,
+                        string description,
+                        double weight,
+                        double deliveryFee,
+                        string destinationCountry,
+                        double customsFee)
+                        : base(trackingCode, description, weight, deliveryFee)
+                    {
+                        DestinationCountry = destinationCountry;
+                        CustomsFee = customsFee;
+                    }
+
+                    public override double EstimatedCost
+                    {
+                        get
+                        {
+                            return DeliveryFee + (Weight * 5) + CustomsFee;
+                        }
+                    }
+
+                    public override void PrintShipment()
+                    {
+
+                        Console.WriteLine("International Shipment");
+                        Console.WriteLine();
+
+                        Console.WriteLine("Tracking Code : " + Description);
+                        Console.WriteLine("Weight  : " + Weight + " KG");
+                        Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
+                        Console.WriteLine("Destination Country  : " + DestinationCountry);
+                        Console.WriteLine("Customs Fee    : " + CustomsFee + " EGP");
+                        Console.WriteLine("Estimated Cost  : " + EstimatedCost + " EGP");
+                    }
+                }
+
+                */
+        #endregion
+        #region Q5 part 2
+        class DeliveryCenter
+        {
+            private Shipment[] shipments = new Shipment[10];
+            private int count = 0;
+
+            public void AddShipment(Shipment shipment)
+            {
+                if (count < shipments.Length)
+                {
+                    shipments[count] = shipment;
+                    count++;
                 }
             }
 
-            public override void PrintShipment()
+            public void RemoveShipment(int index)
             {
-                Console.WriteLine("------------------------------------------");
-                Console.WriteLine("Express Shipment");
-                Console.WriteLine();
-
-                Console.WriteLine("Tracking Code : " + TrackingCode);
-                Console.WriteLine("Description   : " + Description);
-                Console.WriteLine("Weight        : " + Weight + " KG");
-                Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
-                Console.WriteLine("Extra Fee     : " + ExtraFee + " EGP");
-                Console.WriteLine("Estimated Cost: " + EstimatedCost + " EGP");
-            }
-        }
-
-
-        class InternationalShipment : Shipment
-        {
-            public string DestinationCountry;
-            public double CustomsFee;
-
-            public InternationalShipment(
-                string trackingCode,
-                string description,
-                double weight,
-                double deliveryFee,
-                string destinationCountry,
-                double customsFee)
-                : base(trackingCode, description, weight, deliveryFee)
-            {
-                DestinationCountry = destinationCountry;
-                CustomsFee = customsFee;
-            }
-
-            public override double EstimatedCost
-            {
-                get
+                if (index >= 0 && index < count)
                 {
-                    return DeliveryFee + (Weight * 5) + CustomsFee;
+                    for (int i = index; i < count - 1; i++)
+                    {
+                        shipments[i] = shipments[i + 1];
+                    }
+
+                    shipments[count - 1] = null;
+                    count--;
                 }
             }
 
-            public override void PrintShipment()
+           
+            public Shipment this[int index]
             {
-              
-                Console.WriteLine("International Shipment");
-                Console.WriteLine();
+                get
+                {
+                    return shipments[index];
+                }
 
-                Console.WriteLine("Tracking Code : " + Description);
-                Console.WriteLine("Weight  : " + Weight + " KG");
-                Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
-                Console.WriteLine("Destination Country  : " + DestinationCountry);
-                Console.WriteLine("Customs Fee    : " + CustomsFee + " EGP");
-                Console.WriteLine("Estimated Cost  : " + EstimatedCost + " EGP");
+                set
+                {
+                    shipments[index] = value;
+                }
+            }
+
+            public void PrintAllShipments()
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    shipments[i].PrintShipment();
+                    Console.WriteLine();
+                }
             }
         }
+
 
 
         #endregion
