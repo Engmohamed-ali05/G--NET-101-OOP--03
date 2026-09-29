@@ -312,6 +312,7 @@ class Shipment
                 */
         #endregion
         #region Q5 part 2
+        /*
         class DeliveryCenter
         {
             private Shipment[] shipments = new Shipment[10];
@@ -361,6 +362,19 @@ class Shipment
                     shipments[i].PrintShipment();
                     Console.WriteLine();
                 }
+            }
+        }
+
+
+        */
+        #endregion
+
+        #region Q6 part 2
+        static class DeliveryHelper
+        {
+            public static void PrintShipmentDetails(Shipment shipment)
+            {
+                shipment.PrintShipment();
             }
         }
 
