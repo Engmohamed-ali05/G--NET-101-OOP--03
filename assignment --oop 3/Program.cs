@@ -131,6 +131,78 @@ class Shipment
         #endregion
 
         #region Q3 part 2
+        /*  class StandardShipment : Shipment
+          {
+              public StandardShipment(
+                  string trackingCode,
+                  string description,
+                  double weight,
+                  double deliveryFee)
+                  : base(trackingCode, description, weight, deliveryFee)
+              {
+              }
+
+
+          }
+
+
+          class ExpressShipment : Shipment
+          {
+              public double ExtraFee;
+
+              public ExpressShipment(
+                  string trackingCode,
+                  string description,
+                  double weight,
+                  double deliveryFee,
+                  double extraFee)
+                  : base(trackingCode, description, weight, deliveryFee)
+              {
+                  ExtraFee = extraFee;
+              }
+
+              public override double EstimatedCost
+              {
+                  get
+                  {
+                      return DeliveryFee + (Weight * 5) + ExtraFee;
+                  }
+              }
+          }
+
+
+          class InternationalShipment : Shipment
+          {
+              public string DestinationCountry;
+              public double CustomsFee;
+
+              public InternationalShipment(
+                  string trackingCode,
+                  string description,
+                  double weight,
+                  double deliveryFee,
+                  string destinationCountry,
+                  double customsFee)
+                  : base(trackingCode, description, weight, deliveryFee)
+              {
+                  DestinationCountry = destinationCountry;
+                  CustomsFee = customsFee;
+              }
+
+              public override double EstimatedCost
+              {
+                  get
+                  {
+                      return DeliveryFee + (Weight * 5) + CustomsFee;
+                  }
+              }
+          }
+
+
+          */
+        #endregion
+        #region Q4 part 2
+
         class StandardShipment : Shipment
         {
             public StandardShipment(
@@ -142,7 +214,18 @@ class Shipment
             {
             }
 
-            
+            public override void PrintShipment()
+            {
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("Standard Shipment");
+                Console.WriteLine();
+
+                Console.WriteLine("Tracking Code : " + TrackingCode);
+                Console.WriteLine("Description   : " + Description);
+                Console.WriteLine("Weight        : " + Weight + " KG");
+                Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
+                Console.WriteLine("Estimated Cost: " + EstimatedCost + " EGP");
+            }
         }
 
 
@@ -167,6 +250,20 @@ class Shipment
                 {
                     return DeliveryFee + (Weight * 5) + ExtraFee;
                 }
+            }
+
+            public override void PrintShipment()
+            {
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("Express Shipment");
+                Console.WriteLine();
+
+                Console.WriteLine("Tracking Code : " + TrackingCode);
+                Console.WriteLine("Description   : " + Description);
+                Console.WriteLine("Weight        : " + Weight + " KG");
+                Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
+                Console.WriteLine("Extra Fee     : " + ExtraFee + " EGP");
+                Console.WriteLine("Estimated Cost: " + EstimatedCost + " EGP");
             }
         }
 
@@ -196,8 +293,21 @@ class Shipment
                     return DeliveryFee + (Weight * 5) + CustomsFee;
                 }
             }
-        }
 
+            public override void PrintShipment()
+            {
+              
+                Console.WriteLine("International Shipment");
+                Console.WriteLine();
+
+                Console.WriteLine("Tracking Code : " + Description);
+                Console.WriteLine("Weight  : " + Weight + " KG");
+                Console.WriteLine("Delivery Fee  : " + DeliveryFee + " EGP");
+                Console.WriteLine("Destination Country  : " + DestinationCountry);
+                Console.WriteLine("Customs Fee    : " + CustomsFee + " EGP");
+                Console.WriteLine("Estimated Cost  : " + EstimatedCost + " EGP");
+            }
+        }
 
 
         #endregion
