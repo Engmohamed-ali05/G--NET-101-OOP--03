@@ -370,6 +370,7 @@ class Shipment
         #endregion
 
         #region Q6 part 2
+        /*
         static class DeliveryHelper
         {
             public static void PrintShipmentDetails(Shipment shipment)
@@ -377,7 +378,128 @@ class Shipment
                 shipment.PrintShipment();
             }
         }
+        */
 
+
+        #endregion
+
+        #region Q9 part 2
+
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+
+class Driver
+    {
+        public string Name;
+
+        public Driver(string name)
+        {
+            Name = name;
+        }
+    }
+
+
+   
+        {
+            
+            Driver driver = new Driver("Ahmed Mohamed");
+
+            
+            DeliveryCenter center = new DeliveryCenter();
+
+          
+            StandardShipment standard = new StandardShipment(
+                "SH001",
+                "Laptop",
+                3,
+                80
+            );
+
+            
+            ExpressShipment express = new ExpressShipment(
+                "SH002",
+             
+            
+            InternationalShipment international = new InternationalShipment(
+                "SH003",
+                "Television",
+                8,
+                120,
+                "Germany",
+                100
+            );
+
+            center.AddShipment(standard);
+            center.AddShipment(express);
+            center.AddShipment(international);
+
+            
+            Console.WriteLine("******************************************");
+            Console.WriteLine("Delivery Center");
+            Console.WriteLine("*******************************************");
+
+            Console.WriteLine();
+            Console.WriteLine("Driver : " + driver.Name);
+            Console.WriteLine();
+
+            center.PrintAllShipments();
+
+            
+            Console.WriteLine("******************************************");
+            Console.WriteLine("Printinguse DeliveryHelper");
+            Console.WriteLine("*******************************************");
+
+            DeliveryHelper.PrintShipmentDetails(standard);
+            Console.WriteLine();
+
+            DeliveryHelper.PrintShipmentDetails(express);
+            Console.WriteLine();
+
+            DeliveryHelper.PrintShipmentDetails(international);
+            Console.WriteLine();
+
+            
+            Console.WriteLine("******************************************");
+            Console.WriteLine("Updating Weight");
+            Console.WriteLine("********************************************");
+
+            Console.WriteLine("Original Weight  " + standard.Weight + " KG");
+
+            standard.UpdateWeight(5);
+
+            Console.WriteLine("Updated Weight " + standard.Weight + " KG");
+
+            
+            standard.UpdateWeight(5, 0.5);
+
+            Console.WriteLine(
+                "Updated Weight After Packing  "   + standard.Weight + " kg"   );
+
+            
+            
+            Console.WriteLine("*****************************************");
+            Console.WriteLine("Printing Using Shipment");
+            Console.WriteLine("******************************************");
+
+            Shipment[] shipments =
+            {
+            standard,
+            express,
+            international
+        };
+
+            foreach (Shipment shipment in shipments)
+            {
+                shipment.PrintShipment();
+                Console.WriteLine();
+            }
+
+            
+           
+        }
+    }
 
 
         #endregion
@@ -398,7 +520,6 @@ class Shipment
 
 
 
-
-    }
+}
 }
 }
