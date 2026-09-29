@@ -76,6 +76,7 @@ class Shipment
         #endregion
 
         #region Q2 part 2
+        /*
         class StandardShipment : Shipment
         {
             public StandardShipment(
@@ -122,6 +123,78 @@ class Shipment
             {
                 DestinationCountry = destinationCountry;
                 CustomsFee = customsFee;
+            }
+        }
+
+        */
+
+        #endregion
+
+        #region Q3 part 2
+        class StandardShipment : Shipment
+        {
+            public StandardShipment(
+                string trackingCode,
+                string description,
+                double weight,
+                double deliveryFee)
+                : base(trackingCode, description, weight, deliveryFee)
+            {
+            }
+
+            
+        }
+
+
+        class ExpressShipment : Shipment
+        {
+            public double ExtraFee;
+
+            public ExpressShipment(
+                string trackingCode,
+                string description,
+                double weight,
+                double deliveryFee,
+                double extraFee)
+                : base(trackingCode, description, weight, deliveryFee)
+            {
+                ExtraFee = extraFee;
+            }
+
+            public override double EstimatedCost
+            {
+                get
+                {
+                    return DeliveryFee + (Weight * 5) + ExtraFee;
+                }
+            }
+        }
+
+
+        class InternationalShipment : Shipment
+        {
+            public string DestinationCountry;
+            public double CustomsFee;
+
+            public InternationalShipment(
+                string trackingCode,
+                string description,
+                double weight,
+                double deliveryFee,
+                string destinationCountry,
+                double customsFee)
+                : base(trackingCode, description, weight, deliveryFee)
+            {
+                DestinationCountry = destinationCountry;
+                CustomsFee = customsFee;
+            }
+
+            public override double EstimatedCost
+            {
+                get
+                {
+                    return DeliveryFee + (Weight * 5) + CustomsFee;
+                }
             }
         }
 
